@@ -7,7 +7,6 @@ namespace sales_system_2
 {
     class Reports
     {
-        Product aux = null;
 
         Product[] arrproduct = new Product[3];
         int productsCount = 0;
@@ -15,7 +14,7 @@ namespace sales_system_2
         Seller[] arrsellers = new Seller[3];
         int sellersCount = 0;
 
-        Sale[] arrsales = new Sale[3 * 3];
+        Sale[] arrsales = new Sale[3];
         int salesCount = 0;
 
         public void Addarrproduct(Product newProduct)
@@ -36,7 +35,7 @@ namespace sales_system_2
         }
         public void themostexpensiveproduct()
         {
-            
+            Product aux = null;
             for (int i = 0; i < arrproduct.Length; i++)
             {
                 if (i == 0)
@@ -62,9 +61,11 @@ namespace sales_system_2
 
         public void themostcheapestproduct()
         {
+            Product aux=null ;
 
             for (int i = 0; i < arrproduct.Length; i++)
             {
+
                 if (i == 0)
                 {
                     aux = arrproduct[i];
@@ -79,11 +80,11 @@ namespace sales_system_2
                 }
 
             }
-            for (int k = 0; k < arrsales.Length; k++)
+            for (int i = 0; i < arrsales.Length; i++)
             {
-                if (arrsales[k].product.nameProduct.Equals(aux.nameProduct))
+                if (arrsales[i].product.nameProduct.Equals(aux.nameProduct))
                 {
-                    Console.WriteLine("The Seller with the cheapest product is: " + arrsales[k].seller.nameSeller);
+                    Console.WriteLine("The Seller with the cheapest product is: " + arrsales[i].seller.nameSeller);
                 }
             }
             
@@ -91,12 +92,49 @@ namespace sales_system_2
 
         public void averageproductcost()
         {
-            int aux1 = 0;
-            for (int i = 0; i< arrsales.Length; i++)
+            int aux = 0;
+            for (int i = 0; i < arrsales.Length; i++)
             {
-                aux1 += arrsales[i].product.value;
+                aux += arrsales[i].product.value;
             }
-            Console.WriteLine("The avarage is:" + aux1);
+            aux /= arrproduct.Length;
+            Console.WriteLine("The avarage is:" + aux);
+        }
+
+        public void quantityProduct()
+        {
+            int auxrice = 0;
+            int auxeraser = 0;
+            int auxpeanut = 0;
+
+            for(int i=0; i<arrsales.Length;i++)
+            {
+                switch (arrsales[i].product.nameProduct)
+                {
+                    case "eraser":
+                        auxrice++;
+                        break;
+                    case "rice":
+                        auxrice++;
+                        break;
+                    case "peanut":
+                        auxpeanut++;
+                        break;
+                }
+            }
+
+            if(auxeraser>auxrice && auxeraser>auxpeanut)
+            {
+                Console.WriteLine("There is more quantity of eraser product");
+            }
+            else if(auxrice>auxeraser&&auxrice>auxpeanut)
+            {
+                Console.WriteLine("There is more quantity of rice product");
+            }
+            else
+            {
+                Console.WriteLine("There is more quantity of peanut product");
+            }
         }
     }
 }

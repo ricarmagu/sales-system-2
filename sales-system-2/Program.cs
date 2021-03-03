@@ -6,7 +6,9 @@ namespace sales_system_2
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("programa inicializado");
             Reports report = new Reports();
+
 
             Seller v1 = new Seller();
             v1.nameSeller = "juan";
@@ -56,11 +58,13 @@ namespace sales_system_2
             sale3.commentary = "Thanks for your purchase";
             report.Addarrsales(sale3);
 
-           // report.themostcheapestproduct();
-
+            report.themostexpensiveproduct();
+            report.themostcheapestproduct();
+            report.quantityProduct();
             report.averageproductcost();
-
-            //report.themostexpensiveproduct();
+            
+            Console.WriteLine("Hola");
+            
         }
     }
 }
